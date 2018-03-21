@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+  crossorigin="anonymous"></script>
+  <link href="/static/dist/css/tabulator_midnight.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/2.11.0/tabulator.min.js"></script>
+
+</head>
+
+<body>
+<div id="faxes"></div>
+
+<script type="text/javascript">
+$( function() {
+  //create Tabulator on DOM element with id "example-table"
+  $("#faxes").tabulator({
+    fitColumns:true,
+    responsiveLayout:true,
+    columns:[
+        {title:"InternalID", field:"id", sorter:"number"},
+        {title:"Fax Number", field:"to_recipient", sorter:"string"},
+        {title:"Date Time Received", field:"datetime_received", sorter:"date",  headerFilter:"input"},
+        {title:"Subject", field:"subject",  headerFilter:"input"},
+        {title:"Message ID", field:"message_id", headerFilter:"input"},
+        {title:"Path to Repo", field:"path_to_folder"},
+        {title:"Sender", field:"sender", headerFilter:"input"}
+    ],
+});
+$("#faxes").tabulator("setData","http:///10.1.20.120/api/fax");
+});
+
+setInterval(function(){
+    $("#faxes").tabulator("setData");
+}, 20000);
+</script>
+</body>
+
+</html>
+

@@ -1,0 +1,4 @@
+mail_server:            sel-exch-04.synseal.com
+fax_journal_account:    fax.journal@synseal.com
+fax_journal_password:   Insight1
+fax_storage_repo:       C:\FaxFolder
